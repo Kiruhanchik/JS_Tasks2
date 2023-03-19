@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.dir(elem);
+
+        for (let value of document.querySelectorAll('li')) {
+            alert(value);
+        } 
+
+        // let title = li.firstChild.data;
+        // li.getElementsByTagName('li').length
+
+
+        alert(document.body.lastChild.nodeType); // выведет 1
+
+
+        let body = document.body;
+
+        body.innerHTML = "<!--" + body.tagName + "-->";
+
+        alert( body.firstChild.data ); // что выведет? BODY
+
+        /* 
+        Объектом какого класса является document? HTMLDocument
+
+        Какое место он занимает в DOM-иерархии? второе
+
+        Наследует ли он от Node или от Element, или может от HTMLElement? от Node
+        */
+    </script>
+</body>
+</html>

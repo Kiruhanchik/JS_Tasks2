@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // используя цикл
+
+        function sumTo(n) {
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+
+        let n = prompt("Введите n", 1);
+        alert(sumTo(n));
+
+        //используя рекурсию 
+        
+        function  sumTo2(n) {
+            let sum = 0;
+            if (n == 1) {
+                return 1;
+            } else {
+                return  n + sumTo2(n-1);
+            }
+        }
+
+        n = +prompt("Введите n", 1);
+        alert(sumTo2(n));
+
+        //используя фо-лу ариф.прогрессии    Быстрее всего работает третий вариант, медленнее всех цикличный, потому что
+        //                                   не надо организовывать вложенные вызовы функции
+
+        function  sumTo3(n) {
+            let sum = 0;
+            return n * (n + 1) / 2;
+        }
+
+        n = +prompt("Введите n", 1); 
+        alert(sumTo3(n));
+
+
+        function factorial(n) {
+            if (n == 1) {
+                return 1;
+            } else  {
+                return n * factorial(n-1);
+            }
+        }
+
+        n = +prompt("Введите n", 1);
+        alert( factorial(n) )
+
+
+        function fib(n) { 
+            if (n == 1 || n == 2) {
+                return 1;
+            } else {
+                return fib(n-2) + fib(n-1); //очень медленное решение, много вложенности
+            }
+        }
+
+        function fib(n) {
+            let a = 1;
+            let b = 1; 
+            for (let i = 3; i <= n; i++) {  //быстрое решение, переменные меняются значениями
+                let c = a + b;
+                a = b;
+                b = c;
+            }
+            return b;
+        } 
+
+        alert(fib(3)); // 2
+        alert(fib(7)); // 13
+        alert(fib(77)); // 5527939700884757
+
+
+        function printList(list) {  // циклами
+            let list1 = list;
+            while (list1) {
+                alert(list1.value);
+                list1 = list1.next
+            }
+        }
+
+        let list = {
+        value: 1,
+        next: {
+            value: 2,
+            next: {
+                value: 3,
+                next: {
+                    value: 4,
+                    next: null
+                }
+            }
+            }
+        };
+
+        printList(list);
+
+        function printList(list) {  // рекурсией
+            alert(list.value);
+            if (list.next) {
+                printList(list.next);
+            }
+        }
+
+        let list2 = {
+        value: 1,
+        next: {
+            value: 2,
+            next: {
+                value: 3,
+                next: {
+                    value: 4,
+                    next: null
+                }
+            }
+            }
+        };
+
+        printList(list2);
+
+        function printReverseList(list) {  // рекурсией
+            if (list.next) {
+                printReverseList(list.next);
+            }
+            alert (list.value);
+        }
+
+        printReverseList(list);
+
+        function printReverseList(list) {  // циклами
+            let arr = [];
+            let tmp = list;
+
+            while (tmp) {
+                arr.push(tmp.value);
+                tmp = tmp.next;
+            }
+
+            for (let i = arr.length - 1; i >= 0; i--) {
+                alert( arr[i] );
+            }
+        }
+
+        printReverseList(list);
+    </script>
+</body>
+</html>

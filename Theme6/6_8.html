@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function printNumbers(from, to) {   // используя интервальный
+            let a = from;
+            let timerId = setInterval(function() {
+                alert(a);
+                if (a = to) {
+                    clearInterval(timerId);
+                };
+                a++;
+            }, 1000);
+        }
+
+        printNumbers(1, 20);
+
+
+        function printNumbers(from, to) { //используя вложенный setTimeout
+            let a = from;
+            setTimeout(function plus() {
+                alert(a);
+                if (a < to) {
+                    setTimeout(plus, 1000);
+                }
+                a++;
+            }, 1000);
+        }
+
+
+        let i = 0;
+
+        setTimeout(() => alert(i), 100); // ?
+
+        // предположим, что время выполнения этой функции >100 мс
+        for(let j = 0; j < 100000000; j++) {  // после этого блока кода выполнится функция и выведется значение i = 100000000
+        i++;
+        }
+    </script>
+</body>
+</html>

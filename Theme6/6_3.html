@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function makeCounter() {
+        let count = 0;
+
+        return function() {
+            return count++;
+        };
+        }
+
+        let counter = makeCounter();
+        let counter2 = makeCounter();
+
+        alert( counter() ); // 0
+        alert( counter() ); // 1
+
+        alert( counter2() ); // 0
+        alert( counter2() ); // 1
+
+
+        function Counter() {
+        let count = 0;
+
+        this.up = function() {
+            return ++count;
+        };
+        this.down = function() {
+            return --count;
+        };
+        }
+
+        let counter1 = new Counter();
+
+        alert( counter1.up() ); // 1
+        alert( counter1.up() ); // 2
+        alert( counter1.down() ); // 1
+
+
+        let phrase = "Hello";
+
+        if (true) {
+        let user = "John";
+
+        function sayHi() {
+            alert(`${phrase}, ${user}`);
+        }
+        }
+
+        sayHi(); // undefined
+
+
+        function sum(a) {
+            function sum(b) {
+                return a + b;
+            }
+        }
+
+
+        function inBetween(a, b) {
+            return function (x) {
+                return x >= a && x <= b;
+            }
+        }
+
+        function inArray(arr) {
+            return function (x) {
+                return arr.includes(x);
+            }
+        }
+
+
+
+        let users = [
+            { name: "John", age: 20, surname: "Johnson" },
+            { name: "Pete", age: 18, surname: "Peterson" },
+            { name: "Ann", age: 19, surname: "Hathaway" }
+        ];
+
+        function byField(field) {
+            return (a, b) => a[field] > b[field] ? 1 : -1;
+        }
+
+
+        function makeArmy() {
+        let shooters = [];
+            for (let i = 0; i <= 10; i++) {
+                let shooter = function() { // функция shooter
+                    alert( i ); // должна выводить порядковый номер
+                };
+                shooters.push(shooter);
+            }   
+            return shooters;
+        }
+
+        let army = makeArmy();  // у всех одинаковые номера, потому что на последней итерации цикла i = 10; надо это исправить 
+        //                          обьявляю цикл for, на каждой итерации цикла переменная i имеет новое независимое значение номера стрелка
+
+        army[0](); // у 0-го стрелка будет номер 10
+        army[5](); // и у 5-го стрелка тоже будет номер 10
+        // ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...
+    </script>
+</body>
+</html>

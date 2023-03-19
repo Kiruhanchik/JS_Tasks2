@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Депозитный калькулятор</h3>
+    <div class="depozit">Первоначальный депозит<input id="input1" type="text" placeholder="Введите сумму депозита" style="margin-left: 2%;"></div>
+    <div class="time" style="margin-top: 1%;">Срок вклада?
+        <select name="" id="" style="margin-left: 7.5%;">
+            <option value="3">3 (минимум)</option>
+            <option value="6">6 (полгода)</option>
+            <option value="12">12 (год)</option>
+            <option value=" 18">18 (1.5 года)</option>
+            <option value="24">24 (2 года)</option>
+            <option value="30">30 (2.5 года)</option>
+            <option value="36">36 (3года)</option>
+            <option value="60">60 (5 лет)</option>
+        </select>
+    </div>
+    <div class="stavka" style="margin-top: 1%;">Годовая процентная ставка?<input id="input2" type="text" placeholder="Введите ставку" style="margin-left: 0.8%;"></div>
+    <span>Было:</span><span style="margin-left: 7%;">Стало:</span>
+    <span value="" style="display: block;" id="start"></span>
+    <span value="" id="end"></span>
+    <script>
+
+        let initial = 0; // начальная сумма
+        let interest = 0; // проценты
+
+        input1.oninput = function() {
+            start.innerHTML = input1.value;
+            initial = input1.value;
+        };
+
+        input2.oninput = function() {
+            interest = input2.value; 
+        }
+
+
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Rabbit() {}
+        Rabbit.prototype = {
+            eats: true
+        };
+
+        let rabbit = new Rabbit();
+
+        Rabbit.prototype = {};
+
+        alert( rabbit.eats ); // ? true
+
+
+        function Rabbit() {}
+        Rabbit.prototype = {
+            eats: true
+        };
+
+        let rabbit2 = new Rabbit();
+
+        rabbit2.prototype.eats = false;
+
+        alert( rabbit2.eats ); // ? false
+
+
+
+        function Rabbit() {}
+        Rabbit.prototype = {
+            eats: true
+        };
+
+        let rabbit3 = new Rabbit();
+
+        delete rabbit.eats;
+
+        alert( rabbit3.eats ); // ? true
+
+
+
+        function Rabbit() {}
+        Rabbit.prototype = {
+            eats: true
+        };
+
+        let rabbit4 = new Rabbit();
+
+        delete Rabbit.prototype.eats;
+
+        alert( rabbit4.eats ); // ? underfined
+
+
+        function User(name) {
+        this.name = name;
+        }
+
+        let user = new User('John');
+        let user2 = new user.constructor('Pete'); // если сделаем прототип пустым и не запишем конструктор, то ничего не сработает
+
+        alert( user2.name ); 
+
+
+
+    </script>
+</body>
+</html>

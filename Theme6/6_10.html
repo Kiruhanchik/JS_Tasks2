@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function f() {
+            alert( this ); // ? выведет null
+        }
+
+        let user = {
+            g: f.bind(null)
+        };
+
+        user.g();
+
+
+        function f() {
+            alert(this.name);
+        }
+
+        f = f.bind( {name: "Вася"} ).bind( {name: "Петя" } ); // сработает только первый, будет Вася
+
+        f();
+
+
+        function sayHi() {
+            alert( this.name );
+        }
+        sayHi.test = 5;
+
+        let bound = sayHi.bind({
+        name: "Вася"
+        });
+
+        alert( bound.test ); // что выведет? почему? Underfined, потому что свойства тест больше нет
+
+
+
+        function askPassword(ok, fail) {
+            let password = prompt("Password?", '');
+            if (password == "rockstar") ok();
+            else fail();
+        }
+
+        let user1 = {
+            name: 'Вася',
+
+            loginOk() {
+                alert(`${this.name} logged in`);
+            },
+
+            loginFail() {
+                alert(`${this.name} failed to log in`);
+            },
+
+        };
+
+        askPassword(user1.loginOk.blind(users1), user1.loginFail.blind(users1));
+
+
+        function askPassword(ok, fail) {
+        let password = prompt("Password?", '');
+        if (password == "rockstar") ok();
+        else fail();
+        }
+
+        let user2 = {
+        name: 'John',
+
+        login(result) {
+            alert( this.name + (result ? ' logged in' : ' failed to log in') );
+        }
+        };
+
+        askPassword(user2.login.blind(user2, true), user2.login.blind(user2, false)); // ?
+
+
+        let a = {};
+        Object.defineProperty(a, "color", {  // для примера флагов
+            // enumarable позволяет не видеть метод циклом
+            writable: true
+        })
+
+        alert(a);
+    </script>
+</body>
+</html>

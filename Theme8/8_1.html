@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let animal = {
+            jumps: null
+        };
+        let rabbit = {
+            __proto__: animal,
+            jumps: true
+        };
+
+        alert( rabbit.jumps ); // ? (1) true
+
+        delete rabbit.jumps;
+
+        alert( rabbit.jumps ); // ? (2) null
+
+        delete animal.jumps;
+
+        alert( rabbit.jumps ); // ? (3) underfined
+
+
+
+        let head = {
+            glasses: 1
+        };
+
+        let table = {
+            pen: 3,
+            __proto__: head
+        };
+
+        let bed = {
+            sheet: 1,
+            pillow: 2,
+            __proto__: table
+        };
+
+        let pockets = {
+            money: 2000,
+            __proto__: bed // через head.glasses, т.к нам не надо проводить проверку 
+                           // на наличие этого свойства и мы на прямую обращаемся
+        };
+
+
+
+        let animal2 = {
+            eat() {
+                this.full = true;
+            }
+        };
+
+        let rabbit2 = {
+            __proto__: animal2
+        };
+
+        rabbit2.eat(); // rabbit2
+
+
+
+        let hamster = {
+            stomach: [],
+
+            eat(food) {
+                this.stomach = [food];
+            }
+        };
+
+        let speedy = {
+            __proto__: hamster
+        };
+
+        let lazy = {
+            __proto__: hamster
+        };
+
+        // Этот хомяк нашёл еду
+        speedy.eat("apple");
+        alert( speedy.stomach ); // apple
+
+        // У этого хомяка тоже есть еда. Почему? Исправьте
+        alert( lazy.stomach ); // apple теперь нет
+    </script>
+</body>
+</html>
